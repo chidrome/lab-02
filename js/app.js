@@ -3,7 +3,7 @@
 
 document.addEventListener('DOMContentLoaded', ()=> {
 
-  $.get('../data/page-1.json', (data, status) => {
+  $.get('./data/page-1.json', (data, status) => {
     let imageObjects = [];
     // let data = JSON.parse(data);
     data.forEach((imgObj) => {
@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     submitHandler(imageObjects);
     showAllHandler(imageObjects);
   })
+
 })
 
 // constructor function
