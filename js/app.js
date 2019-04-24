@@ -1,18 +1,21 @@
 'use strict'
-//global variables
-var imageObjects = [];
+
 
 document.addEventListener('DOMContentLoaded', ()=> {
 
   $.get('../data/page-1.json', (data, status) => {
+    let imageObjects = [];
     data.forEach((imgObj) => {
-      imageObjects.push(imgObj)
+      imageObjects.push(new ImageObject(imgObj.description, imgObj.horns, imgObj.image_url, imgObj.keyword, imgObj.title))
     })
+    displayImages(imageObjects);
   })
-  console.log(imageObjects);
+
+  
 
 })
 
+// constructor function
 function ImageObject(description, horns, imgUrl, keyword, title){
   this.description = description,
   this.horns = horns, 
@@ -22,7 +25,7 @@ function ImageObject(description, horns, imgUrl, keyword, title){
 };
 
 var filterPictures = (arr) => {
-  let selectValue = $('.class').val();
+  let selectValue = $('.pictures').val();
   let usrSelect = [];
   $.each(arr, function(key, value){
     if(key.keyword === selectValue){
@@ -31,3 +34,12 @@ var filterPictures = (arr) => {
   });
   return usrSelect;
 }
+// display images function
+const displayImages = (array) => {
+
+  array.forEach((img) => {
+    $('div.container').append(`<img src="${img.imgUrl}" class="pictures" />`)
+  })
+}
+
+
