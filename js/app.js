@@ -3,7 +3,7 @@
 
 document.addEventListener('DOMContentLoaded', ()=> {
 
-  $.get('../data/page-1.json', (data, status) => {
+  $.get('https://codefellows.github.io/code-301-guide/curriculum/class-02/lab/starter-code/page-1.json', (data, status) => {
     let imageObjects = [];
     data.forEach((imgObj) => {
       imageObjects.push(new ImageObject(imgObj.description, imgObj.horns, imgObj.image_url, imgObj.keyword, imgObj.title))
