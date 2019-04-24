@@ -21,6 +21,7 @@ function ImaageObject(description, horns, imgUrl, keyword, title){
   this.title = title
 };
 
+<<<<<<< HEAD
 var filterPictures = (arr) => {
   let selectValue = $('.class').val();
   let usrSelect = [];
@@ -31,3 +32,6 @@ var filterPictures = (arr) => {
   });
   return usrSelect;
 }
+=======
+
+>>>>>>> ee3f4476be04f84e2bf1d78a68b0360c6e39aab8
