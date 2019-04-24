@@ -10,8 +10,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
     })
     displayImages(imageObjects);
     populateKeywords(imageObjects);
+    submitHandler(imageObjects);
+    showAllHandler(imageObjects);
   })
-
 })
 
 // constructor function
@@ -23,23 +24,28 @@ function ImageObject(description, horns, imgUrl, keyword, title){
   this.title = title
 };
 
-var filterPictures = (arr) => {
-  let selectValue = $('.pictures').val();
+var filterPictures = (arr, keyword) => {
   let usrSelect = [];
   $.each(arr, function(index, value){
-    if(value.keyword === 'rhino'){
+    if(value.keyword === keyword){
       usrSelect.push(value);
     }
   });
-  return usrSelect;
+  removeOptions();
+  displayImages(usrSelect);
 
 }
 // display images function
 const displayImages = (array) => {
-
   array.forEach((img) => {
     $('div.container').append(`<img src="${img.imgUrl}" class="pictures" />`)
   })
+}
+
+
+// function to remove all option elements
+var removeOptions = () => {
+  $('div.container').empty();
 }
 
 // function to add the filtered keywords
@@ -54,10 +60,22 @@ var populateKeywords = (array) => {
 }
 
 // submit handler
-var submitHandler = () => {
-  
+var submitHandler = (array) => {
+  $('#filter-form').submit(function(e) {
+    e.preventDefault();
+    var val = $("#keywords option:selected").val();
+    filterPictures(array, val)
+  });
 }
 
+// show all handler
+var showAllHandler = (array) => {
+  $('#showAll').submit(function(e) {
+    e.preventDefault();
+    removeOptions();
+    displayImages(array)
+  });
+}
 
 const firstLetterCap = (text) => {
   return text.charAt(0).toUpperCase() + text.slice(1);
