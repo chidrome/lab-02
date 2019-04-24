@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   $.get('../data/page-1.json', (data, status) => {
     data.forEach((imgObj) => {
-      imageObjects.push(new ImageObject(imgObj.description, imgObj.horns, imgObj.image_url, imgObj.keyword, imgObj.title))
+      imageObjects.push(imgObj)
     })
   })
   console.log(imageObjects);
@@ -16,9 +16,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
 function ImageObject(description, horns, imgUrl, keyword, title){
   this.description = description,
   this.horns = horns, 
-  this.image_url = imgUrl,
+  this.imgUrl = imgUrl,
   this.keyword = keyword,
   this.title = title
 };
 
-
+var filterPictures = (arr) => {
+  let selectValue = $('.class').val();
+  let usrSelect = [];
+  $.each(arr, function(key, value){
+    if(key.keyword === selectValue){
+      usrSelect.push(element);
+    }
+  });
+  return usrSelect;
+}
