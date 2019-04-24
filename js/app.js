@@ -9,10 +9,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
       imageObjects.push(new ImageObject(imgObj.description, imgObj.horns, imgObj.image_url, imgObj.keyword, imgObj.title))
     })
     displayImages(imageObjects);
-    filterPictures(imageObjects);
+    populateKeywords(imageObjects);
   })
-
-  
 
 })
 
@@ -33,7 +31,6 @@ var filterPictures = (arr) => {
       usrSelect.push(value);
     }
   });
-  console.log(usrSelect);
   return usrSelect;
 
 }
@@ -45,4 +42,24 @@ const displayImages = (array) => {
   })
 }
 
+// function to add the filtered keywords
+var populateKeywords = (array) => {
+  let keywords = []
+  $.each(array, (i, obj) => {
+    if(!keywords.includes(obj.keyword)){
+      keywords.push(obj.keyword)
+      $('#keywords').append(`<option value="${obj.keyword}">${firstLetterCap(obj.keyword)}</option>`)
+    }
+  })
+}
+
+// submit handler
+var submitHandler = () => {
+  
+}
+
+
+const firstLetterCap = (text) => {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+};
 
