@@ -6,17 +6,17 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   $.get('../data/page-1.json', (data, status) => {
     data.forEach((imgObj) => {
-      imageObjects.push(imgObj)
+      imageObjects.push(new ImageObject(imgObj.description, imgObj.horns, imgObj.image_url, imgObj.keyword, imgObj.title))
     })
   })
   console.log(imageObjects);
 
 })
 
-function ImaageObject(description, horns, imgUrl, keyword, title){
+function ImageObject(description, horns, imgUrl, keyword, title){
   this.description = description,
   this.horns = horns, 
-  this.imgUrl = imgUrl,
+  this.image_url = imgUrl,
   this.keyword = keyword,
   this.title = title
 };
