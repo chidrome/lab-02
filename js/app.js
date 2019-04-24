@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
       imageObjects.push(new ImageObject(imgObj.description, imgObj.horns, imgObj.image_url, imgObj.keyword, imgObj.title))
     })
     displayImages(imageObjects);
+    filterPictures(imageObjects);
   })
 
   
@@ -27,12 +28,14 @@ function ImageObject(description, horns, imgUrl, keyword, title){
 var filterPictures = (arr) => {
   let selectValue = $('.pictures').val();
   let usrSelect = [];
-  $.each(arr, function(key, value){
-    if(key.keyword === selectValue){
-      usrSelect.push(element);
+  $.each(arr, function(index, value){
+    if(value.keyword === 'rhino'){
+      usrSelect.push(value);
     }
   });
+  console.log(usrSelect);
   return usrSelect;
+
 }
 // display images function
 const displayImages = (array) => {
